@@ -1,143 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-parent</artifactId>
+      <version>5</version>
+   </parent>
+   
+   <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jboss.switchboard</groupId>
-    <artifactId>jboss-switchboard-parent</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+   <groupId>org.jboss.switchboard</groupId>
+   <artifactId>jboss-switchboard-parent</artifactId>
+   <packaging>pom</packaging>
+   <version>1.0.0-SNAPSHOT</version>
 
-    <name>JBoss SwitchBoard Parent project</name>
-    <url>http://www.jboss.org</url>
-    <description>
-    Parent/Aggregator project for JBoss SwitchBoard
-    </description>
+   <name>JBoss SwitchBoard Parent project</name>
+   <url>http://www.jboss.org</url>
+   <description>
+      Parent/Aggregator project for JBoss SwitchBoard
+   </description>
 
+   <properties>
+      <version.jboss.logging>2.1.1.GA</version.jboss.logging>
+      <version.junit>4.8.1</version.junit>
+      <version.mockito>1.8.4</version.mockito>
+      <version.reloaded.naming>0.2.0</version.reloaded.naming>
+   </properties>
 
-    <properties>
-        <version.junit>4.8.1</version.junit>
-        <version.mockito>1.8.4</version.mockito>
-        <version.reloaded.naming>0.2.0</version.reloaded.naming>
-    </properties>
+   <modules>
+      <module>spi</module>
+      <module>impl</module>
+      <module>mc-int</module>
+   </modules>
 
-    <modules>
-        <module>spi</module>
-        <module>impl</module>
-        <module>mc-int</module>
-    </modules>
+   <!-- Build -->
+   <build>
 
-    <!-- Build -->
-    <build>
+      <plugins>
 
-        <plugins>
+         <!-- Compiler JDK6 -->
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <inherited>true</inherited>
+            <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+            </configuration>
+         </plugin>
 
-            <!-- Compiler JDK6 -->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <showDeprecation>false</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                    <optimize>true</optimize>
-                    <compilerVersion>1.6</compilerVersion>
-                    <fork>true</fork>
-                    <argLine>-Xmx512M</argLine>
-                    <executable>${JAVA_HOME}/bin/javac</executable>
-                </configuration>
-            </plugin>
+         <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.0</version>
+            <configuration>
+               <autoVersionSubmodules>true</autoVersionSubmodules>
+            </configuration>
+         </plugin>
+         
+      </plugins>
 
-            <!-- Surefire -->
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.4.3</version>
-                <configuration>
-                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                    <printSummary>true</printSummary>
-                    <forkMode>always</forkMode>
-                    <testFailureIgnore>false</testFailureIgnore>
-                </configuration>
-            </plugin>
+   </build>
 
-            <!-- Enforce Maven Environment -->
-            <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-maven-environment</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <rules>
-                        <requireJavaVersion>
-                            <version>1.6</version> <!-- Must be JDK6 -->
-                        </requireJavaVersion>
-                        <requireProperty>
-                            <property>env.JAVA_HOME</property>
-                            <message>"JAVA_HOME needs to be
-                                set to
-                                compile"</message>
-                        </requireProperty>
-                    </rules>
-                </configuration>
-            </plugin>
+   <dependencyManagement>
+      <dependencies>
 
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <archive>
-                        <!--
-                            We don't want .jar/META-INF/maven/*
-                            folder/files in the generated jar
-                        -->
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-            </plugin>
+         <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging-spi</artifactId>
+            <version>${version.jboss.logging}</version>
+         </dependency>
+         
+         <!--  Reloaded Naming -->
+         <dependency>
+            <groupId>org.jboss.reloaded.naming</groupId>
+            <artifactId>jboss-reloaded-naming-spi</artifactId>
+            <version>${version.reloaded.naming}</version>
+         </dependency>
 
-        </plugins>
-
-    </build>
+         <dependency>
+            <groupId>org.jboss.reloaded.naming</groupId>
+            <artifactId>jboss-reloaded-naming-deployers</artifactId>
+            <version>${version.reloaded.naming}</version>
+         </dependency>
 
 
-    <dependencyManagement>
-        <dependencies>
+         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>${version.junit}</version>
+         </dependency>
 
-            <!--  Reloaded Naming -->
-            <dependency>
-                <groupId>org.jboss.reloaded.naming</groupId>
-                <artifactId>jboss-reloaded-naming-spi</artifactId>
-                <version>${version.reloaded.naming}</version>
-            </dependency>
+         <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${version.mockito}</version>
+            <scope>test</scope>
+         </dependency>
 
-            <dependency>
-                <groupId>org.jboss.reloaded.naming</groupId>
-                <artifactId>jboss-reloaded-naming-deployers</artifactId>
-                <version>${version.reloaded.naming}</version>
-            </dependency>
-            
+      </dependencies>
 
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <scope>test</scope>
-                <version>${version.junit}</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${version.mockito}</version>
-                <scope>test</scope>
-            </dependency>
-
-        </dependencies>
-
-    </dependencyManagement>
+   </dependencyManagement>
 </project>

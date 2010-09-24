@@ -1,101 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-		<groupId>org.jboss.switchboard</groupId>
-		<artifactId>jboss-switchboard-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
+   <parent>
+      <groupId>org.jboss.switchboard</groupId>
+      <artifactId>jboss-switchboard-parent</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+   </parent>
 
-    <groupId>org.jboss.switchboard</groupId>
-	<artifactId>jboss-switchboard-mc-int</artifactId>
-	<packaging>jar</packaging>
+   <groupId>org.jboss.switchboard</groupId>
+   <artifactId>jboss-switchboard-mc-int</artifactId>
+   <packaging>jar</packaging>
 
-    <name>JBoss Micro Container integration for SwitchBoard component</name>
-    <url>http://www.jboss.org</url>
+   <name>JBoss Micro Container integration for SwitchBoard component</name>
+   <url>http://www.jboss.org</url>
 
-	<properties>
-		<version.org.jboss.deployers>2.2.0.Alpha4</version.org.jboss.deployers>
-        <version.org.jboss.kernel>2.2.0.Alpha2</version.org.jboss.kernel>
-        <version.jboss.metadata.common>2.0.0.Alpha16</version.jboss.metadata.common>
-        <version.jboss.metadata.ejb>2.0.0-alpha-18</version.jboss.metadata.ejb>
-        <version.jboss.metadata.war>2.0.0.Alpha14</version.jboss.metadata.war>
-	</properties>
+   <properties>
+      <version.org.jboss.deployers>2.2.0.Alpha4</version.org.jboss.deployers>
+      <version.org.jboss.kernel>2.2.0.Alpha2</version.org.jboss.kernel>
+      <version.jboss.metadata.common>2.0.0.Alpha16</version.jboss.metadata.common>
+      <version.jboss.metadata.ejb>2.0.0-alpha-18</version.jboss.metadata.ejb>
+      <version.jboss.metadata.war>2.0.0.Alpha14</version.jboss.metadata.war>
+   </properties>
 
-    <dependencies>
+   <dependencies>
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jboss-switchboard-spi</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+      <dependency>
+         <groupId>${project.groupId}</groupId>
+         <artifactId>jboss-switchboard-spi</artifactId>
+         <version>${project.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jboss-switchboard-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        
-        
-        <dependency>
-            <groupId>org.jboss.metadata</groupId>
-            <artifactId>jboss-metadata-common</artifactId>
-            <version>${version.jboss.metadata.common}</version>
-        </dependency>
-        
-        <!-- Reloaded naming -->
-        <dependency>
-            <groupId>org.jboss.reloaded.naming</groupId>
-            <artifactId>jboss-reloaded-naming-spi</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.jboss.reloaded.naming</groupId>
-            <artifactId>jboss-reloaded-naming-deployers</artifactId>
-        </dependency>
-        
-        
-        <!--  MC deployers -->
-        <dependency>
-            <groupId>org.jboss.deployers</groupId>
-            <artifactId>jboss-deployers-spi</artifactId>
-            <version>${version.org.jboss.deployers}</version>
-            <scope>provided</scope>
-        </dependency>
+      <dependency>
+         <groupId>${project.groupId}</groupId>
+         <artifactId>jboss-switchboard-impl</artifactId>
+         <version>${project.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.jboss.deployers</groupId>
-            <artifactId>jboss-deployers-vfs-spi</artifactId>
-            <version>${version.org.jboss.deployers}</version>
-            <scope>provided</scope>
-        </dependency>
 
-        <dependency>
-            <groupId>org.jboss.kernel</groupId>
-            <artifactId>jboss-kernel</artifactId>
-            <version>${version.org.jboss.kernel}</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <!-- Test dependencies -->
-        <dependency>
-            <groupId>org.jboss.metadata</groupId>
-            <artifactId>jboss-metadata-ejb</artifactId>
-            <version>${version.jboss.metadata.ejb}</version>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+         <groupId>org.jboss.metadata</groupId>
+         <artifactId>jboss-metadata-common</artifactId>
+         <version>${version.jboss.metadata.common}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.jboss.metadata</groupId>
-            <artifactId>jboss-metadata-war</artifactId>
-            <version>${version.jboss.metadata.war}</version>
-            <scope>test</scope>
-        </dependency>
-        
-        
+      <!-- Reloaded naming -->
+      <dependency>
+         <groupId>org.jboss.reloaded.naming</groupId>
+         <artifactId>jboss-reloaded-naming-spi</artifactId>
+      </dependency>
 
-    </dependencies>
+      <dependency>
+         <groupId>org.jboss.reloaded.naming</groupId>
+         <artifactId>jboss-reloaded-naming-deployers</artifactId>
+      </dependency>
+
+
+      <!--  MC deployers -->
+      <dependency>
+         <groupId>org.jboss.deployers</groupId>
+         <artifactId>jboss-deployers-spi</artifactId>
+         <version>${version.org.jboss.deployers}</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.deployers</groupId>
+         <artifactId>jboss-deployers-vfs-spi</artifactId>
+         <version>${version.org.jboss.deployers}</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.kernel</groupId>
+         <artifactId>jboss-kernel</artifactId>
+         <version>${version.org.jboss.kernel}</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- Test dependencies -->
+      <dependency>
+         <groupId>org.jboss.metadata</groupId>
+         <artifactId>jboss-metadata-ejb</artifactId>
+         <version>${version.jboss.metadata.ejb}</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.metadata</groupId>
+         <artifactId>jboss-metadata-war</artifactId>
+         <version>${version.jboss.metadata.war}</version>
+         <scope>test</scope>
+      </dependency>
+
+
+   </dependencies>
 </project>
